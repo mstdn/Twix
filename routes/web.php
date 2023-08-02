@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TimelineController;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [TimelineController::class, 'public'])->name('landing');
+Route::get('/explore', [ExploreController::class, 'index'])->name('explore.index');
 Route::get('/@{user:username}', [UserController::class, 'show'])->name('user.show');
 Route::get('/@{user:username}/{post:id}', [PostController::class, 'show'])->name('post.show');
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {

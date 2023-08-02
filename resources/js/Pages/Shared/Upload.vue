@@ -14,7 +14,7 @@
                             alt="" />
                     </div>
                     <div class="w-full p-2">
-                        <textarea v-model="form.description" name="description" id="description" class="
+                        <textarea :maxHeight="300" v-model="form.description" name="description" id="description" class="
                             dark:text-white
                             text-gray-900
                             placeholder-gray-400
@@ -23,6 +23,7 @@
                             bg-transparent
                             border-0
                             focus:outline-none
+                            borborder-transparent focus:border-transparent focus:ring-0
                             resize-none
                         " placeholder="What's happening?"></textarea>
                         <div class="flex text-sm text-red-500" v-if="$page.props.errors.description">{{

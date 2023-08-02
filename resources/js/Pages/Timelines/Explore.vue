@@ -3,7 +3,6 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import Pagination from '../Shared/Pagination.vue';
 import Post from '../Shared/Post.vue';
 import Empty from '../Shared/Empty.vue';
-import Compose from '../Shared/Compose.vue';
 import Upload from '../Shared/Upload.vue';
 
 let props = defineProps({
@@ -17,7 +16,7 @@ let props = defineProps({
 <template>
     <AppLayout title="Home">
         <template #header>
-            Home
+            Explore
         </template>
 
         <div v-if="$page.props.auth.user">

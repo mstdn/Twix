@@ -7,7 +7,7 @@ import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
-// import TextareaAutosize from 'vue-textarea-autosize';
+import ResizeTextarea from 'resize-textarea-vue3';
 
 const appName = import.meta.env.VITE_APP_NAME || "Twitter";
 
@@ -25,7 +25,7 @@ createInertiaApp({
             .use(VuePlyr, {
                 plyr: {},
             })
-            // .use(TextareaAutosize)
+            .use(ResizeTextarea)
             .mount(el);
     },
     progress: {
