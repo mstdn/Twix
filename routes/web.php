@@ -3,13 +3,21 @@
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [TimelineController::class, 'public'])->name('landing');
+Route::group(['middleware' => ['guest']], function () {
+    //only guests can access these routes
+    // Route::get('/', [ExploreController::class, 'index'])->name('landing');
+    Route::get('/', function(){
+        return redirect()->route('explore.index');
+    });
+});
+Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore.index');
 Route::get('/@{user:username}', [UserController::class, 'show'])->name('user.show');
 Route::get('/@{user:username}/{post:id}', [PostController::class, 'show'])->name('post.show');

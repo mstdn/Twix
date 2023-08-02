@@ -18,6 +18,9 @@ class TimelineController extends Controller
                 ->latest()
                 ->where('status', 'Public')
                 ->where('is_nsfw', 0)
+                ->when($request->input('search'), function ($query, $search) {
+                    $query->where('description', 'like', "%{$search}%");
+                })
                 ->paginate(25)
                 ->withQueryString()
         );
@@ -41,6 +44,9 @@ class TimelineController extends Controller
                 ->latest()
                 ->where('status', 'Public')
                 ->where('is_nsfw', 0)
+                ->when($request->input('search'), function ($query, $search) {
+                    $query->where('description', 'like', "%{$search}%");
+                })
                 ->paginate(25)
                 ->withQueryString()
         );

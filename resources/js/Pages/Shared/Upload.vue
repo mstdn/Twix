@@ -31,11 +31,11 @@
                     </div>
                 </div>
                 <div class="w-full flex items-top p-2 text-white pl-14">
-                    <label>
+                    <label v-if="media.length < 4 && !video.length">
                         <file-input @input="uploadMedia"></file-input>
                     </label>
 
-                    <label>
+                    <label v-if="!media.length && !video.length">
                         <!-- <div class="
                                     text-blue-400
                                     hover:bg-blue-50
@@ -71,7 +71,7 @@
                         ml-auto
                         mr-1
                         ">
-                        <span class="font-bold text-sm">Meow</span>
+                        <span class="font-bold text-sm">Bite</span>
                     </button>
                 </div>
 

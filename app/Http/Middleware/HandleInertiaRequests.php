@@ -48,6 +48,8 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message')
             ],
 
+            'filters' => $request->only(['search']),
+
         ]);
     }
 }

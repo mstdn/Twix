@@ -1,8 +1,8 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue'
-import CreatePost from '../Shared/CreatePost.vue'
-import Post from '../Shared/Post.vue'
-import Empty from '../Shared/Empty.vue'
+import AppLayout from '@/Layouts/AppLayout.vue';
+import Upload from '../Shared/Upload.vue';
+import Post from '../Shared/Post.vue';
+import Empty from '../Shared/Empty.vue';
 
 
 let props = defineProps({
@@ -20,7 +20,7 @@ let props = defineProps({
         </template>
 
         <div v-if="$page.props.auth.user">
-            <CreatePost />
+            <Upload />
         </div>
 
         <div v-if="posts.meta.total === 0">
