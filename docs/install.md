@@ -1,6 +1,6 @@
-## Install Goldfish Social
+## Install Twix
 
-Goldfish is build on Laravel and very easy to install. You do need the following:
+Twix is build on Laravel and very easy to install. You do need the following:
 
 - PHP 8.1.x
 - MySQL / SQLLite
@@ -13,13 +13,13 @@ Goldfish is build on Laravel and very easy to install. You do need the following
 
 Start with cloning the repo to your server:
 
-`git clone https://github.com/Goldfish-Social/Goldfish.git`
+`git clone https://github.com/mstdn/Twix.git`
 
 
 
 Install the composer dependencies:
 
-`cd goldfish && composer install`
+`cd twix && composer install`
 
 
 Copy the example .env and fillout your details like URL, database, email:
@@ -59,6 +59,10 @@ Start Horizon (service files later. Fow now use 'tmux' or something):
 
 `php artisan horizon`
 
+
+Start SSR (Server-side Rendering)
+
+`node bootstrap/ssr/ssr.js`
 
 
 After that setup a webserver (apache or nginx) and browse to your new platform!
