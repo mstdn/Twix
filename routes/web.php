@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\ExploreController;
-use App\Http\Controllers\MediaController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\TimelineController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MediaController;
+use App\Http\Controllers\VideoController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\TimelineController;
 
 
 Route::group(['middleware' => ['guest']], function () {
@@ -34,7 +35,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/video', [VideoController::class, 'store'])->name('video.store');
     Route::delete('/video/{video}', [VideoController::class, 'destroy'])->name('video.destroy');
     Route::delete('/media/{media}', [MediaController::class, 'destroy'])->name('media.destroy');
-    Route::get('/admin', ['middleware' => 'admin', function () {
-        //
-    }]);
+    Route::group(['middleware' => 'admin'], function () {
+        Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+        Route::get('/admin/posts', [AdminController::class, 'posts'])->name('admin.posts');
+        Route::delete('/admin/posts/{post}/delete', [AdminController::class, 'deletePost'])->name('admin.post.destroy');
+        Route::delete('/admin/@{user:id}/delete', [AdminController::class, 'deleteUser'])->name('admin.user.destroy');
+    });
 });
