@@ -141,7 +141,7 @@
                             <a class="hover:underline" href="#">Cookies</a>
                         </li>
                         <li class="inline-block mx-2">
-                            <a class="hover:underline" href="#">Source</a>
+                            <a class="hover:underline" target="_blank" href="https://github.com/mstdn/Twix">Source</a>
                         </li>
                         <li class="inline-block mx-2">© 2023 Twix, Inc.</li>
                     </ul>
