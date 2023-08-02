@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,16 +17,19 @@ class PostResource extends JsonResource
             'time'              =>  $this->created_at->diffForHumans(),
             'username'          =>  $this->user->username,
             'status'            =>  $this->status,
-            //'avatar'            =>  $this->user->getProfilePhotoUrlAttribute(),
-            //'downloadready'     =>  $this->converted_for_downloading_at,
-            //'hlsready'          =>  $this->converted_for_streaming_at,
-            //'video'             =>  Storage::disk('public')->url('uploads/' . $this->user->id . '/' . 'videos/' . $this->id . '.mp4'),
-            //'hls'               =>  Storage::disk('public')->url('uploads/' . $this->user->id . '/' . 'videos/' . $this->id . '.m3u8'),
-            //'isliked'           =>  Auth::user() ? $this->isLikedBy(Auth::user()) : null,
-            //'delete'            =>  Auth::user() ? Auth::user()->can('delete-post', $this->resource) : null,
+            'avatar'            =>  $this->user->profile_photo_url,
+            'isliked'           =>  Auth::user() ? $this->isLikedBy(Auth::user()) : null,
+            'likes'             =>  $this->likers()->count(),
+            'user'              =>  UserResource::make($this->user),
+            'delete'            =>  Auth::user() ? Auth::user()->can('delete-post', $this->resource) : null,
+            'media'             =>  $this->media !== null ? $this->media : null,
+            'video'             =>  $this->videos !== null ? $this->videos : null,
+            // 'image'             =>  $this->image !== null ? Storage::disk('public')->url($this->image) : null,
+            //'video'             =>  $this->converted_for_downloading_at !== null ? Storage::disk('public')->url('uploads/' . $this->user->id . '/' . 'videos/' . $this->id . '.mp4') : null,
+            // 'hls'               =>  Storage::disk('public')->url('uploads/' . $this->user->id . '/' . 'videos/' . $this->id . '.m3u8'),
             //'replycount'        =>  $this->replies->count(),
-            //'likes'             =>  $this->likers()->count(),
             //'replies'           =>  ReplyResource::collection($this->whenLoaded('replies'))
+            //'avatar'            =>  $this->user->getProfilePhotoUrlAttribute(),
         ];
     }
 }

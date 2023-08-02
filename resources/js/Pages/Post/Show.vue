@@ -1,17 +1,31 @@
+<script setup>
+import AppLayout from '@/Layouts/AppLayout.vue'
+import { Link } from '@inertiajs/vue3';
+
+let props = defineProps({
+    post: Object,
+    user: Object,
+});
+
+</script>
 <template>
-    <div v-if="posts !== null">
-        <div v-for="post in posts.data" :key="post.id"
+    <AppLayout title="Home">
+        <template #header>
+            @{{ user.name }}'s post
+        </template>
+
+        <div
             class="border-b border-l border-r border-gray-200 dark:border-dim-200 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out pb-4">
             <div class="flex flex-shrink-0 p-4 pb-0">
                 <a href="#" class="flex-shrink-0 group block">
                     <div class="flex items-top">
                         <div>
-                            <img class="inline-block h-9 w-9 rounded-full" :src="post.user.avatar" alt="" />
+                            <img class="inline-block h-9 w-9 rounded-full" :src="user.avatar" alt="" />
                         </div>
                         <div class="ml-3">
                             <p class="flex items-center text-base leading-6 font-medium text-gray-800 dark:text-white">
-                                <Link :href="route('user.show', { id: post.user.username })">
-                                {{ post.user.username }}
+                                <Link :href="route('user.show', { id: user.username })">
+                                {{ user.name }}
                                 </Link>
                                 <svg viewBox="0 0 24 24" aria-label="Verified account" fill="currentColor"
                                     class="w-4 h-4 ml-1 text-blue-500 dark:text-white">
@@ -23,9 +37,9 @@
                                 </svg>
                                 <span
                                     class="ml-1 text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                    <Link :href="route('user.show', { id: post.username })">@{{ post.username }}</Link> ·
-                                    <Link :href="route('post.show', { user: post.user.username, post: post.id })">{{
-                                        post.time }}</Link>
+                                    <Link :href="route('user.show', { id: user.username })">@{{ user.username }}</Link> ·
+                                    <Link :href="route('post.show', { user: user.username, post: post.data.id })">{{
+                                        post.data.time }}</Link>
                                 </span>
                             </p>
                         </div>
@@ -34,23 +48,17 @@
             </div>
             <div class="pl-16">
                 <p class="text-base width-auto font-medium text-gray-800 dark:text-white flex-shrink mb-3">
-                    <Link :href="route('post.show', { user: post.user.username, post: post.id })">
-                    {{ post.description }}
-                    </Link>
+                    {{ post.data.description }}
                 </p>
 
-                <div v-if="post.media.length" class="carousel rounded-box my-3 mr-2 rounded-2xl">
-                    <div v-for="(item, index) in post.media" :key="index" class="carousel-item ">
+                <div v-if="post.data.media.length" class="carousel rounded-box my-3 mr-2 rounded-2xl">
+                    <div v-for="(item, index) in post.data.media" :key="index" class="carousel-item ">
                         <img class="rounded-2xl object-cover h-full w-full max-h-[300px]" :src="item.full_url" />
                     </div>
                 </div>
 
-                <!-- <div v-if="post.image !== null" class="flex mb-4 mr-2 rounded-2xl border border-gray-600 w-fit">
-                    <img class="rounded-2xl" :src="post.image" alt="" />
-                </div> -->
-
-                <div v-if="post.video.length" class="flex mb-4 mr-2">
-                    <div v-for="(item, index) in post.video" :key="index">
+                <div v-if="post.data.video.length" class="flex mb-4 mr-2">
+                    <div v-for="(item, index) in post.data.video" :key="index">
                         <vue-plyr :options="options">
                             <video controls crossorigin playsinline loop>
                                 <source size="720" :src="item.full_url" type="video/mp4" />
@@ -59,10 +67,18 @@
                     </div>
                 </div>
 
+                <!-- <div v-if="post.data.video !== null" class="flex mb-4 mr-2">
+                    <vue-plyr :options="options">
+                        <video controls crossorigin playsinline loop data-poster="poster.jpg">
+                            <source size="720" :src="post.data.video" type="video/mp4" />
+                        </video>
+                    </vue-plyr>
+                </div> -->
+
                 <!-- <div class="flex my-3 mr-2 rounded-2xl border border-gray-600">
-                        <img class="rounded-2xl" src="https://pbs.twimg.com/media/EnTkhz-XYAEH2kY?format=jpg&name=small"
-                            alt="" />
-                    </div> -->
+                    <img class="rounded-2xl" src="https://pbs.twimg.com/media/EnTkhz-XYAEH2kY?format=jpg&name=small"
+                        alt="" />
+                </div> -->
 
                 <div class="flex">
                     <div class="w-full">
@@ -89,7 +105,7 @@
                                 </svg>
                                 0
                             </div>
-                            <Link v-if="$page.props.user !== null && post.isliked === false" preserveScroll method="post"
+                            <Link v-if="$page.props.user !== null && post.data.isliked === false" preserveScroll method="post"
                                 as="button" class="
                                 flex-1 flex
                                 items-center
@@ -101,18 +117,18 @@
                                 transition
                                 duration-350
                                 ease-in-out
-                                " :href="route('like', { id: post.id })">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
+                                " :href="route('like', { id: post.data.id })">
+                                <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
                                 <g>
                                     <path
-                                        d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z">
+                                    d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z">
                                     </path>
                                 </g>
-                            </svg>
-                            {{ post.likes }}
+                                </svg>
+                                {{ post.data.likes }}
                             </Link>
 
-                            <Link v-if="$page.props.user !== null && post.isliked === true" preserveScroll method="post"
+                            <Link v-if="$page.props.user !== null && post.data.isliked === true" preserveScroll method="post"
                                 as="button" class="
                                 flex-1 flex
                                 items-center
@@ -124,15 +140,15 @@
                                 transition
                                 duration-350
                                 ease-in-out
-                                " :href="route('like', { id: post.id })">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
+                                " :href="route('like', { id: post.data.id })">
+                                <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
                                 <g>
                                     <path
-                                        d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z">
+                                    d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z">
                                     </path>
                                 </g>
-                            </svg>
-                            {{ post.likes }}
+                                </svg>
+                                {{ post.data.likes }}
                             </Link>
 
                             <a v-if="$page.props.auth.user === null" class="
@@ -148,13 +164,13 @@
                                 ease-in-out
                                 ">
                                 <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
-                                    <g>
-                                        <path
-                                            d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z">
-                                        </path>
-                                    </g>
+                                <g>
+                                    <path
+                                    d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z">
+                                    </path>
+                                </g>
                                 </svg>
-                                {{ post.likes }}
+                                {{ post.data.likes }}
                             </a>
                             <!-- <div
                                 class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-red-600 dark:hover:text-red-600 transition duration-350 ease-in-out">
@@ -185,12 +201,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</template>
-<script setup>
-import { Link } from '@inertiajs/vue3';
 
-let props = defineProps({
-    posts: Object,
-});
-</script>
+    </AppLayout>
+</template>

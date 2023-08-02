@@ -15,7 +15,7 @@
                     </div>
                     <input
                         class="w-full bg-gray-200 dark:bg-dim-400 border-gray-200 dark:border-dim-400 text-gray-100 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border focus:border-blue-200 font-normal h-9 flex items-center pl-12 text-sm rounded-full border shadow"
-                        placeholder="Search Twitter" />
+                        placeholder="Search meows" />
                 </div>
                 <!-- /Search -->
 
@@ -32,7 +32,7 @@
                         <h2 class="font-bold text-md text-gray-800 dark:text-white">
                             #Caturday
                         </h2>
-                        <p class="text-xs text-gray-400">29.7K Tweets</p>
+                        <p class="text-xs text-gray-400">29.7K Cats</p>
                     </div>
                     <!-- /Trending Topic -->
 
@@ -42,7 +42,7 @@
                         <h2 class="font-bold text-md text-gray-800 dark:text-white">
                             #Mastodon
                         </h2>
-                        <p class="text-xs text-gray-400">351K Tweets</p>
+                        <p class="text-xs text-gray-400">351K Cats</p>
                     </div>
                     <!-- /Trending Topic -->
 
@@ -52,7 +52,7 @@
                         <h2 class="font-bold text-md text-gray-800 dark:text-white">
                             #ElonSucks
                         </h2>
-                        <p class="text-xs text-gray-400">52.7K Tweets</p>
+                        <p class="text-xs text-gray-400">52.7K Cats</p>
                     </div>
                     <!-- /Trending Topic -->
 

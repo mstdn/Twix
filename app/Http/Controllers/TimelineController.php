@@ -18,7 +18,7 @@ class TimelineController extends Controller
                 ->latest()
                 ->where('status', 'Public')
                 ->where('is_nsfw', 0)
-                ->paginate(10)
+                ->paginate(25)
                 ->withQueryString()
         );
 
@@ -41,7 +41,7 @@ class TimelineController extends Controller
                 ->latest()
                 ->where('status', 'Public')
                 ->where('is_nsfw', 0)
-                ->paginate(10)
+                ->paginate(25)
                 ->withQueryString()
         );
 

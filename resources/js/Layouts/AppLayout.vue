@@ -25,10 +25,10 @@ const logout = () => {
         <div class="navbar bg-white dark:bg-dim-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
             <div class="flex-1">
                 <Link href="/" class="btn btn-ghost normal-case text-xl dark:text-white">
-                Thingy
+                {{ $page.props.appName }}
                 </Link>
             </div>
-            <div v-if="$page.props.auth.user" class="flex-none gap-2">
+            <!-- <div v-if="$page.props.auth.user" class="flex-none gap-2">
                 <button class="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -46,7 +46,7 @@ const logout = () => {
                         <span class="badge badge-xs badge-primary indicator-item"></span>
                     </div>
                 </button>
-            </div>
+            </div> -->
             <div v-if="$page.props.auth.user" class="dropdown dropdown-end">
                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">

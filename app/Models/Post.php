@@ -6,6 +6,7 @@ use Illuminate\Validation\Rules\File;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Post extends Model
 {
@@ -17,6 +18,15 @@ class Post extends Model
         'description',
         'video',
         'status',
+        'image',
+        'title',
+        'tags',
+        'original_name',
+        'disk',
+        'path',
+        'converted_for_downloading_at',
+        'is_nsfw',
+        'converted_for_streaming_at'
     ];
 
     public function scopeFilter($query, array $filters)
@@ -29,6 +39,12 @@ class Post extends Model
                 ->where('title', 'like', '%' . $search . '%')
                 ->orWhere('content', 'like', '%' . $search . '%')
         );
+    }
+
+    public function incrementReadCount() 
+    {
+        $this->reads++;
+        return $this->save();
     }
 
     public function delete()
@@ -46,5 +62,15 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function media(): MorphMany
+    {
+        return $this->morphMany(Media::class, 'model');
+    }
+
+    public function videos(): MorphMany
+    {
+        return $this->morphMany(Video::class, 'model');
     }
 }

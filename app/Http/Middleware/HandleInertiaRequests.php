@@ -41,7 +41,7 @@ class HandleInertiaRequests extends Middleware
             'appName' => config('app.name'),
 
             'auth.user' => fn () => $request->user()
-                ? $request->user()->only('id', 'name', 'email', 'username')
+                ? $request->user()->only('id', 'name', 'email', 'username', 'profile_photo_path', 'profile_photo_url', 'is_private', 'website', 'updated_at', 'created_at')
                 : null,
 
             'flash' => [

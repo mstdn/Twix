@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "993db5df3f65146dfe5ea6e38206aba7",
+    "content-hash": "8f1ebcaef5158b14b0bf8361952bce92",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1198,6 +1198,158 @@
             "time": "2023-01-17T01:02:51+00:00"
         },
         {
+            "name": "intervention/image",
+            "version": "2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "04be355f8d6734c826045d02a1079ad658322dad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/04be355f8d6734c826045d02a1079ad658322dad",
+                "reference": "04be355f8d6734c826045d02a1079ad658322dad",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1 || ^2.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5.15"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Intervention\\Image\\ImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Intervention\\Image\\Facades\\Image"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@intervention.io",
+                    "homepage": "https://intervention.io/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "support": {
+                "issues": "https://github.com/Intervention/image/issues",
+                "source": "https://github.com/Intervention/image/tree/2.7.2"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/interventionio",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Intervention",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
+            "name": "itsgoingd/clockwork",
+            "version": "v5.1.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itsgoingd/clockwork.git",
+                "reference": "c9dbdbb1f0efd19bb80f1080ef63f1b9b1bc3b1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/c9dbdbb1f0efd19bb80f1080ef63f1b9b1bc3b1b",
+                "reference": "c9dbdbb1f0efd19bb80f1080ef63f1b9b1bc3b1b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Clockwork\\Support\\Laravel\\ClockworkServiceProvider"
+                    ],
+                    "aliases": {
+                        "Clockwork": "Clockwork\\Support\\Laravel\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Clockwork\\": "Clockwork/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "itsgoingd",
+                    "email": "itsgoingd@luzer.sk",
+                    "homepage": "https://twitter.com/itsgoingd"
+                }
+            ],
+            "description": "php dev tools in your browser",
+            "homepage": "https://underground.works/clockwork",
+            "keywords": [
+                "Devtools",
+                "debugging",
+                "laravel",
+                "logging",
+                "lumen",
+                "profiling",
+                "slim"
+            ],
+            "support": {
+                "issues": "https://github.com/itsgoingd/clockwork/issues",
+                "source": "https://github.com/itsgoingd/clockwork/tree/v5.1.12"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/itsgoingd",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-12-13T00:04:12+00:00"
+        },
+        {
             "name": "jaybizzle/crawler-detect",
             "version": "v1.2.116",
             "source": {
@@ -1595,6 +1747,84 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2023-07-26T03:30:46+00:00"
+        },
+        {
+            "name": "laravel/horizon",
+            "version": "v5.19.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/horizon.git",
+                "reference": "1c9b6b3068c64f50ae99a96ca662206c6078a1c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/1c9b6b3068c64f50ae99a96ca662206c6078a1c5",
+                "reference": "1c9b6b3068c64f50ae99a96ca662206c6078a1c5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pcntl": "*",
+                "ext-posix": "*",
+                "illuminate/contracts": "^8.17|^9.0|^10.0",
+                "illuminate/queue": "^8.17|^9.0|^10.0",
+                "illuminate/support": "^8.17|^9.0|^10.0",
+                "nesbot/carbon": "^2.17",
+                "php": "^7.3|^8.0",
+                "ramsey/uuid": "^4.0",
+                "symfony/error-handler": "^5.0|^6.0",
+                "symfony/process": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^6.0|^7.0|^8.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.0",
+                "predis/predis": "^1.1|^2.0"
+            },
+            "suggest": {
+                "ext-redis": "Required to use the Redis PHP driver.",
+                "predis/predis": "Required when not using the Redis PHP driver (^1.1|^2.0)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Horizon\\HorizonServiceProvider"
+                    ],
+                    "aliases": {
+                        "Horizon": "Laravel\\Horizon\\Horizon"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Horizon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Dashboard and code-driven configuration for Laravel queues.",
+            "keywords": [
+                "laravel",
+                "queue"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/horizon/issues",
+                "source": "https://github.com/laravel/horizon/tree/v5.19.0"
+            },
+            "time": "2023-07-14T14:18:51+00:00"
         },
         {
             "name": "laravel/jetstream",
@@ -2194,6 +2424,71 @@
                 }
             ],
             "time": "2023-05-02T20:02:14+00:00"
+        },
+        {
+            "name": "league/glide",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/glide.git",
+                "reference": "2ff92c8f1edc80b74e2d3c5efccfc7223f74d407"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/glide/zipball/2ff92c8f1edc80b74e2d3c5efccfc7223f74d407",
+                "reference": "2ff92c8f1edc80b74e2d3c5efccfc7223f74d407",
+                "shasum": ""
+            },
+            "require": {
+                "intervention/image": "^2.7",
+                "league/flysystem": "^2.0|^3.0",
+                "php": "^7.2|^8.0",
+                "psr/http-message": "^1.0|^2.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "phpunit/php-token-stream": "^3.1|^4.0",
+                "phpunit/phpunit": "^8.5|^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Glide\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Reinink",
+                    "email": "jonathan@reinink.ca",
+                    "homepage": "http://reinink.ca"
+                },
+                {
+                    "name": "Titouan Galopin",
+                    "email": "galopintitouan@gmail.com",
+                    "homepage": "https://titouangalopin.com"
+                }
+            ],
+            "description": "Wonderfully easy on-demand image manipulation library with an HTTP based API.",
+            "homepage": "http://glide.thephpleague.com",
+            "keywords": [
+                "ImageMagick",
+                "editing",
+                "gd",
+                "image",
+                "imagick",
+                "league",
+                "manipulation",
+                "processing"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/glide/issues",
+                "source": "https://github.com/thephpleague/glide/tree/2.3.0"
+            },
+            "time": "2023-07-08T06:26:07+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -3369,6 +3664,67 @@
             "time": "2022-06-13T21:57:56+00:00"
         },
         {
+            "name": "predis/predis",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/predis/predis.git",
+                "reference": "33b70b971a32b0d28b4f748b0547593dce316e0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/predis/predis/zipball/33b70b971a32b0d28b4f748b0547593dce316e0d",
+                "reference": "33b70b971a32b0d28b4f748b0547593dce316e0d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.3",
+                "phpstan/phpstan": "^1.9",
+                "phpunit/phpunit": "^8.0 || ~9.4.4"
+            },
+            "suggest": {
+                "ext-relay": "Faster connection with in-memory caching (>=0.6.2)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Till Krüss",
+                    "homepage": "https://till.im",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A flexible and feature-complete Redis client for PHP.",
+            "homepage": "http://github.com/predis/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "support": {
+                "issues": "https://github.com/predis/predis/issues",
+                "source": "https://github.com/predis/predis/tree/v2.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/tillkruss",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-06-14T10:37:31+00:00"
+        },
+        {
             "name": "psr/cache",
             "version": "3.0.0",
             "source": {
@@ -4081,6 +4437,198 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "spatie/image",
+            "version": "2.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/image.git",
+                "reference": "2f802853aab017aa615224daae1588054b5ab20e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/image/zipball/2f802853aab017aa615224daae1588054b5ab20e",
+                "reference": "2f802853aab017aa615224daae1588054b5ab20e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-exif": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "league/glide": "^2.2.2",
+                "php": "^8.0",
+                "spatie/image-optimizer": "^1.7",
+                "spatie/temporary-directory": "^1.0|^2.0",
+                "symfony/process": "^3.0|^4.0|^5.0|^6.0"
+            },
+            "require-dev": {
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.5",
+                "symfony/var-dumper": "^4.0|^5.0|^6.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Image\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Manipulate images with an expressive API",
+            "homepage": "https://github.com/spatie/image",
+            "keywords": [
+                "image",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/image/tree/2.2.7"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-07-24T13:54:13+00:00"
+        },
+        {
+            "name": "spatie/image-optimizer",
+            "version": "1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/image-optimizer.git",
+                "reference": "af179994e2d2413e4b3ba2d348d06b4eaddbeb30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/af179994e2d2413e4b3ba2d348d06b4eaddbeb30",
+                "reference": "af179994e2d2413e4b3ba2d348d06b4eaddbeb30",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": "^7.3|^8.0",
+                "psr/log": "^1.0 | ^2.0 | ^3.0",
+                "symfony/process": "^4.2|^5.0|^6.0"
+            },
+            "require-dev": {
+                "pestphp/pest": "^1.21",
+                "phpunit/phpunit": "^8.5.21|^9.4.4",
+                "symfony/var-dumper": "^4.2|^5.0|^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\ImageOptimizer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily optimize images using PHP",
+            "homepage": "https://github.com/spatie/image-optimizer",
+            "keywords": [
+                "image-optimizer",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/image-optimizer/issues",
+                "source": "https://github.com/spatie/image-optimizer/tree/1.7.1"
+            },
+            "time": "2023-07-27T07:57:32+00:00"
+        },
+        {
+            "name": "spatie/laravel-image-optimizer",
+            "version": "1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-image-optimizer.git",
+                "reference": "cd8945e47b9fd01bc7b770eecd57c56f46c47422"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-image-optimizer/zipball/cd8945e47b9fd01bc7b770eecd57c56f46c47422",
+                "reference": "cd8945e47b9fd01bc7b770eecd57c56f46c47422",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.0|^9.0|^10.0",
+                "php": "^8.0",
+                "spatie/image-optimizer": "^1.2.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.23|^7.0|^8.0",
+                "phpunit/phpunit": "^9.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\LaravelImageOptimizer\\ImageOptimizerServiceProvider"
+                    ],
+                    "aliases": {
+                        "ImageOptimizer": "Spatie\\LaravelImageOptimizer\\Facades\\ImageOptimizer"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelImageOptimizer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Optimize images in your Laravel app",
+            "homepage": "https://github.com/spatie/laravel-image-optimizer",
+            "keywords": [
+                "laravel-image-optimizer",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/laravel-image-optimizer/tree/1.7.1"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2023-01-24T23:44:33+00:00"
         },
         {
             "name": "spatie/temporary-directory",

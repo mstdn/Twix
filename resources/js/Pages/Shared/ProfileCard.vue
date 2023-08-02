@@ -7,7 +7,7 @@
                     <div class="flex justify-between">
                         <div class="flex flex-row">
                             <img class="w-14 h-14 rounded-full"
-                                src="https://media.mstdn.social/accounts/avatars/000/005/168/original/c85be6683862c045.png"
+                                :src="profile.data.avatar"
                                 alt="@{{ profile.data.username }}" />
                             <div class="flex flex-col ml-2">
                                 <h1 class="text-gray-800 dark:text-white font-bold">
@@ -80,7 +80,6 @@
                 </div>
             </div>
         </div>
-
 
 
         <div class="">
