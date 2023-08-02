@@ -3,7 +3,7 @@
         <div v-for="post in posts.data" :key="post.id"
             class="border-b border-l border-r border-gray-200 dark:border-dim-200 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out pb-4">
             <div class="flex flex-shrink-0 p-4 pb-0">
-                <a href="#" class="flex-shrink-0 group block">
+                <div class="flex-shrink-0 group block">
                     <div class="flex items-top">
                         <div>
                             <img class="inline-block h-9 w-9 rounded-full" :src="post.user.avatar" alt="" />
@@ -30,7 +30,7 @@
                             </p>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
             <div class="pl-16">
                 <p class="text-base width-auto font-medium text-gray-800 dark:text-white flex-shrink mb-3">

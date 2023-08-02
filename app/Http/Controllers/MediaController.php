@@ -11,6 +11,10 @@ class MediaController extends Controller
 {
     public function store(Request $request)
     {
+        $request->validate([
+            'file'  =>  ['nullable','mimes:jpg,jpeg,png,gif','max:500048'],
+        ]);
+
         $file = $request->file('file');
         $file->store('media/' . $request->user()->id . '/' . now()->format('Y') . '/' . now()->format('m'), 'public');
 
