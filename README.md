@@ -1,5 +1,7 @@
 ## Twix - Twitter.. X.. Twix!
 
+### ⚠️ This project is in development and not production ready ⚠️ 
+
 Meow there! Welcome to the Twix Social repo, this project is intended as a free open source platform that looks like former Twitter but is made for fun. We are using the following stacks:
 
 - [Laravel 10.x](https://laravel.com/).

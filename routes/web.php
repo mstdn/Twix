@@ -34,5 +34,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/video', [VideoController::class, 'store'])->name('video.store');
     Route::delete('/video/{video}', [VideoController::class, 'destroy'])->name('video.destroy');
     Route::delete('/media/{media}', [MediaController::class, 'destroy'])->name('media.destroy');
-
+    Route::get('/admin', ['middleware' => 'admin', function () {
+        //
+    }]);
 });
