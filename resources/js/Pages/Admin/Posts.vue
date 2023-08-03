@@ -26,9 +26,9 @@ let props = defineProps({
 </script>
 
 <template>
-    <AppLayout title="Home">
+    <AppLayout title="Posts">
         <template #header>
-            Home
+            Posts
         </template>
 
         <div class="columns-1 md:columns-1 lg:columns-1">

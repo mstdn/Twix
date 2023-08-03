@@ -14,9 +14,9 @@ let props = defineProps({
 </script>
 
 <template>
-    <AppLayout title="Home">
+    <AppLayout title="Public">
         <template #header>
-            Home
+            Public
         </template>
 
         <div v-if="$page.props.auth.user">

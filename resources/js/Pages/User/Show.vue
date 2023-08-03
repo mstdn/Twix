@@ -1,5 +1,5 @@
 <template>
-    <AppLayout title="Home">
+    <AppLayout :title="props.profile.data.username">
         <template #header>
             @{{ props.profile.data.username }}'s profile
         </template>
