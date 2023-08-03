@@ -10,16 +10,16 @@
                 <div class="bg-gray-50 dark:bg-dim-700 rounded-2xl m-2">
                     <h1
                         class="text-gray-900 dark:text-white text-md font-bold p-3 border-b border-gray-200 dark:border-dim-200">
-                        What’s happening
+                        What’s next?
                     </h1>
 
                     <!-- Trending Topic -->
                     <div
                         class="text-blue-400 text-sm font-normal p-3 border-b border-gray-200 dark:border-dim-200 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out">
                         <h2 class="font-bold text-md text-gray-800 dark:text-white">
-                            #Caturday
+                            Pagination
                         </h2>
-                        <p class="text-xs text-gray-400">29.7K Bites</p>
+                        <p class="text-xs text-gray-400">soon</p>
                     </div>
                     <!-- /Trending Topic -->
 
@@ -27,9 +27,9 @@
                     <div
                         class="text-blue-400 text-sm font-normal p-3 border-b border-gray-200 dark:border-dim-200 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out">
                         <h2 class="font-bold text-md text-gray-800 dark:text-white">
-                            #Mastodon
+                            Post deletes
                         </h2>
-                        <p class="text-xs text-gray-400">351K Bites</p>
+                        <p class="text-xs text-gray-400">soon</p>
                     </div>
                     <!-- /Trending Topic -->
 
@@ -37,16 +37,18 @@
                     <div
                         class="text-blue-400 text-sm font-normal p-3 border-b border-gray-200 dark:border-dim-200 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out">
                         <h2 class="font-bold text-md text-gray-800 dark:text-white">
-                            #ElonSucks
+                            Timeline filter
                         </h2>
-                        <p class="text-xs text-gray-400">52.7K Bites</p>
+                        <p class="text-xs text-gray-400">soon</p>
                     </div>
                     <!-- /Trending Topic -->
+                    <a href="https://github.com/mstdn/Twix/commits/main" target="_blank">
+                        <div
+                            class="text-blue-400 text-sm font-normal p-3 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out">
+                            Show more
+                        </div>
+                    </a>
 
-                    <div
-                        class="text-blue-400 text-sm font-normal p-3 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out">
-                        Show more
-                    </div>
                 </div>
                 <!-- /What’s happening -->
 

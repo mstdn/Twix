@@ -12,15 +12,18 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        return Inertia::render('User/Index', [
-            'users'     =>  UserResource::make(
-                User::query()
-                    ->with('posts')
+        return Inertia::render('User/Users', [
+            'users'     =>  UserResource::collection(
+                User::with('posts', 'likes', 'followers', 'followables')
                     ->latest()
+                    ->when($request->input('search'), function ($query, $search) {
+                        $query->where('username', 'like', "%{$search}%");
+                    })
                     ->paginate(25)
                     ->withQueryString()
             ),
-            'filters' =>  $request->only(['search']),
+            'filters'           =>  $request->only(['search']),
+            'usercount'         =>  User::latest()->count()
         ]);
     }
 

@@ -20,6 +20,7 @@ Route::group(['middleware' => ['guest']], function () {
 });
 Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore.index');
+Route::get('/users', [UserController::class, 'index'])->name('user.index');
 Route::get('/@{user:username}', [UserController::class, 'show'])->name('user.show');
 Route::get('/@{user:username}/{post:id}', [PostController::class, 'show'])->name('post.show');
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {

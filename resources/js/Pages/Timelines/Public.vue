@@ -3,13 +3,12 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import Upload from '../Shared/Upload.vue';
 import Post from '../Shared/Post.vue';
 import Empty from '../Shared/Empty.vue';
-
+import Pagination from '../Shared/Pagination.vue';
 
 let props = defineProps({
     posts: Object,
     filters: Object,
 });
-
 
 </script>
 
@@ -27,6 +26,8 @@ let props = defineProps({
             <Empty />
         </div>
         <Post :posts="posts" />
+
+        <Pagination :links="posts" />
 
     </AppLayout>
 </template>

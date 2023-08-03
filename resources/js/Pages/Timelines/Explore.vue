@@ -27,7 +27,7 @@ let props = defineProps({
         </div>
         <Post :posts="posts" />
 
-        <Pagination :links="posts.links" />
+        <Pagination :links="posts" />
 
     </AppLayout>
 </template>

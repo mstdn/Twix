@@ -29,7 +29,18 @@ import { Head, Link, router } from '@inertiajs/vue3';
                         <span class="hidden xl:block ml-4 font-bold text-md">Explore</span>
                     </NavLink>
 
-                    <a href="#"
+                    <NavLink href="/users" :active="$page.component === 'User/Users'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="h-6 w-6" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        <span class="hidden xl:block ml-4 font-bold text-md">Community</span>
+                    </NavLink>
+
+                    <!-- <a href="#"
                         class="flex items-center justify-center xl:justify-start text-gray-800 dark:text-white hover:text-blue-400 dark:hover:text-blue-400 mb-8 transition duration-350 ease-in-out">
                         <svg fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -72,7 +83,7 @@ import { Head, Link, router } from '@inertiajs/vue3';
                             </g>
                         </svg>
                         <span class="hidden xl:block ml-4 font-bold text-md">Lists</span>
-                    </a>
+                    </a> -->
 
                     <NavLink :href="route('user.show', { id: $page.props.auth.user.username })"
                         :active="route().current('user.show')">
@@ -122,6 +133,17 @@ import { Head, Link, router } from '@inertiajs/vue3';
                         <span class="hidden xl:block ml-4 font-bold text-md">Explore</span>
                     </NavLink>
 
+                    <NavLink href="/users" :active="$page.component === 'User/Users'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="h-6 w-6" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        <span class="hidden xl:block ml-4 font-bold text-md">Community</span>
+                    </NavLink>
+
                     <NavLink :href="route('login')" :active="$page.component === 'Auth/Login'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -143,7 +165,6 @@ import { Head, Link, router } from '@inertiajs/vue3';
                 </nav>
                 <!-- /Nav -->
 
-            </div>
         </div>
     </div>
-</template>
+</div></template>
