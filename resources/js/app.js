@@ -8,8 +8,13 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
 import ResizeTextarea from 'resize-textarea-vue3';
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
-const appName = import.meta.env.VITE_APP_NAME || "Twitter";
+const appName = import.meta.env.VITE_APP_NAME || "Twix";
+const options = {
+    // You can set your default options here
+};
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -22,6 +27,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(Toast, options)
             .use(VuePlyr, {
                 plyr: {},
             })
@@ -30,6 +36,6 @@ createInertiaApp({
     },
     progress: {
         color: "#4B5563",
-        showSpinner: true,
+        showSpinner: false,
     },
 });

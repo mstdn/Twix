@@ -82,17 +82,13 @@
         </div>
 
 
-        <div class="">
-            <Post :posts="posts" />
-        </div>
+        
     </div>
 </template>
 <script setup>
 import { Link } from '@inertiajs/vue3';
-import Post from '../Shared/Post.vue';
 
 let props = defineProps({
-    posts: Object,
     profile: Object,
 });
 

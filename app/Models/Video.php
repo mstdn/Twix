@@ -19,7 +19,8 @@ class Video extends Model
         'model',
         'converted_for_downloading_at',
         'converted_for_streaming_at',
-        'filename'
+        'filename',
+        'url'
     ];
 
     protected $appends = ['full_url'];
@@ -31,6 +32,7 @@ class Video extends Model
 
     public function getFullUrlAttribute()
     {
-        return url('storage/videos/' . $this->user_id . '/' . $this->created_at->format('Y') . '/' . $this->created_at->format('m') . '/' . $this->filename);
+        return url('storage/media/' . $this->user_id . '/videos/converted/' . $this->id . '.mp4');
+        // return url('storage/videos/' . $this->user_id . '/' . $this->created_at->format('Y') . '/' . $this->created_at->format('m') . '/' . $this->filename);
     }
 }

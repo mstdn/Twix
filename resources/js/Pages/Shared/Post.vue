@@ -23,9 +23,10 @@
                                 </svg> -->
                                 <span
                                     class="ml-1 text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                    <Link :href="route('user.show', { id: post.username })">@{{ post.username }}</Link> ·
-                                    <Link :href="route('post.show', { user: post.user.username, post: post.id })">{{
-                                        post.time }}</Link>
+                                    <Link :href="route('user.show', { id: post.username })">@{{ post.username }}</Link>
+                                    ·
+                                    <Link :href="route('post.show', { user: post.user.username, post: post.id })
+                                        ">{{ post.time }}</Link>
                                 </span>
                             </p>
                         </div>
@@ -35,14 +36,14 @@
             <div class="pl-16">
                 <p class="text-base width-auto font-medium text-gray-800 dark:text-white flex-shrink mb-3">
                     <Link :href="route('post.show', { user: post.user.username, post: post.id })">
-                        <!-- <div v-html="post.description"></div> -->
-                        {{ post.description }}
+                    <!-- <div v-html="post.description"></div> -->
+                    {{ post.description }}
                     </Link>
                 </p>
 
                 <div v-if="post.media.length" class="carousel rounded-box my-3 mr-2 rounded-2xl">
-                    <div v-for="(item, index) in post.media" :key="index" class="carousel-item ">
-                        <img class="rounded-2xl object-cover h-full w-full max-h-[300px]" :src="item.full_url" />
+                    <div v-for="(item, index) in post.media" :key="index" class="carousel-item w-full">
+                        <img class="rounded-2xl object-cover w-full" :src="item.full_url" />
                     </div>
                 </div>
 
@@ -50,13 +51,16 @@
                     <img class="rounded-2xl" :src="post.image" alt="" />
                 </div> -->
 
-                <div v-if="post.video.length" class="flex mb-4 mr-2">
+                <div v-if="post.video !== null && post.video.length" class="flex mb-4 mr-2">
                     <div v-for="(item, index) in post.video" :key="index">
-                        <vue-plyr :options="options">
-                            <video controls crossorigin playsinline loop>
-                                <source size="720" :src="item.full_url" type="video/mp4" />
-                            </video>
-                        </vue-plyr>
+                        <div class="w-full">
+                            <vue-plyr :options="options">
+                                <video controls crossorigin playsinline>
+                                    <source size="1080" :src="item.full_url" type="video/mp4" />
+                                </video>
+                            </vue-plyr>
+                            <!-- <video controls loop crossorigin="anonymous" :src="item.full_url" class="w-full" /> -->
+                        </div>
                     </div>
                 </div>
 
@@ -91,18 +95,9 @@
                                 0
                             </div>
                             <Link v-if="$page.props.user !== null && post.isliked === false" preserveScroll method="post"
-                                as="button" class="
-                                flex-1 flex
-                                items-center
-                                text-gray-800
-                                dark:text-white
-                                text-xs text-gray-400
-                                hover:text-red-600
-                                dark:hover:text-red-600
-                                transition
-                                duration-350
-                                ease-in-out
-                                " :href="route('like', { id: post.id })">
+                                as="button"
+                                class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-red-600 dark:hover:text-red-600 transition duration-350 ease-in-out"
+                                :href="route('like', { id: post.id })">
                             <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
                                 <g>
                                     <path
@@ -114,18 +109,9 @@
                             </Link>
 
                             <Link v-if="$page.props.user !== null && post.isliked === true" preserveScroll method="post"
-                                as="button" class="
-                                flex-1 flex
-                                items-center
-                                text-red-600
-                                dark:text-red-600
-                                text-xs text-red-600
-                                hover:text-red-700
-                                dark:hover:text-red-400
-                                transition
-                                duration-350
-                                ease-in-out
-                                " :href="route('like', { id: post.id })">
+                                as="button"
+                                class="flex-1 flex items-center text-red-600 dark:text-red-600 text-xs text-red-600 hover:text-red-700 dark:hover:text-red-400 transition duration-350 ease-in-out"
+                                :href="route('like', { id: post.id })">
                             <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
                                 <g>
                                     <path
@@ -136,18 +122,8 @@
                             {{ post.likes }}
                             </Link>
 
-                            <a v-if="$page.props.auth.user === null" class="
-                                flex-1 flex
-                                items-center
-                                text-gray-800
-                                dark:text-white
-                                text-xs text-gray-400
-                                hover:text-red-600
-                                dark:hover:text-red-600
-                                transition
-                                duration-350
-                                ease-in-out
-                                ">
+                            <a v-if="$page.props.auth.user === null"
+                                class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-red-600 dark:hover:text-red-600 transition duration-350 ease-in-out">
                                 <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
                                     <g>
                                         <path
@@ -189,7 +165,9 @@
     </div>
 </template>
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link } from "@inertiajs/vue3";
+import VuePlyr from 'vue-plyr';
+import 'vue-plyr/dist/vue-plyr.css';
 
 let props = defineProps({
     posts: Object,

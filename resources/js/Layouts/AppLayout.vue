@@ -1,19 +1,39 @@
 <script setup>
-import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import Banner from '@/Components/Banner.vue';
-import NavLink from '@/Components/NavLink.vue';
 import Left from '@/Pages/Shared/Left.vue';
 import Right from '@/Pages/Shared/Right.vue';
+import { useToast } from "vue-toastification";
+
 
 defineProps({
     title: String,
 });
 
-
 const logout = () => {
     router.post(route('logout'));
 };
+
+// const toast = useToast()
+
+// watch(() => usePage().props.value.flash, flash => {
+//     let toastId = null;
+
+//     if (flash.message) {
+//         toastId = toast({ component: Notification, props: { type: TYPE.DEFAULT, title: flash.message } })
+//     }
+//     if (flash.success) {
+//         toastId = toast({ component: Notification, props: { type: TYPE.SUCCESS, title: flash.success } })
+//     }
+//     if (flash.error) {
+//         toastId = toast({ component: Notification, props: { type: TYPE.ERROR, title: flash.error } })
+//     }
+
+//     if (toastId !== null) {
+//         setTimeout(() => toast.dismiss(toastId), 5000)
+//     }
+// }, { deep: true })
+
 </script>
 
 <template>
@@ -78,7 +98,7 @@ const logout = () => {
         </div>
 
         <!-- Page Content -->
-        <div class="container mx-auto h-screen">
+        <div class="container mx-auto">
             <div class="flex flex-row justify-center">
 
                 <!-- Left -->
@@ -87,7 +107,7 @@ const logout = () => {
 
 
                 <!-- Middle -->
-                <div class="w-full sm:w-600 h-screen">
+                <div class="w-full sm:w-600">
                     <!-- Header -->
                     <div
                         class="flex justify-between items-center border-b px-4 py-3 sticky top-0 bg-white dark:bg-dim-900 border-gray-200 dark:border-gray-700 border-l border-r">

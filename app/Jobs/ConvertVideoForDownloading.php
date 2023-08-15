@@ -12,6 +12,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class ConvertVideoForDownloading implements ShouldQueue
@@ -27,6 +29,7 @@ class ConvertVideoForDownloading implements ShouldQueue
 
     public function handle()
     {
+        $storagePath = 'media/' . $this->video->user_id . '/videos/converted/' . $this->video->id . '.mp4';
         // create a video format...
         $lowBitrateFormat = (new X264)->setKiloBitrate(500);
 
@@ -47,11 +50,17 @@ class ConvertVideoForDownloading implements ShouldQueue
             ->inFormat($lowBitrateFormat)
 
         // call the 'save' method with a filename...
-            ->save('uploads/' . $this->video->user->id . '/' . 'videos/' . $this->video->id . '.mp4');
+            ->save($storagePath);
 
         // update the database so we know the convertion is done!
         $this->video->update([
-            'converted_for_downloading_at' => Carbon::now(),
+            'converted_for_downloading_at'  =>  Carbon::now(),
+            'url'                           =>  $storagePath
         ]);
+
+        // $file = $this->video->path;
+
+        
+
     }
 }

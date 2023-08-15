@@ -7,6 +7,8 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\FollowResource;
+use App\Http\Resources\FollowersResource;
 
 class UserController extends Controller
 {
@@ -41,6 +43,39 @@ class UserController extends Controller
         ]);
     }
 
+    public function followers(User $user)
+    {
+        // $followers = $user->followers;
+        $followers = $user->followers()->latest()->paginate();
+
+        return Inertia::render('User/Followers', [
+            'profile'       =>  UserResource::make($user),
+            'followers'     =>  FollowersResource::collection($followers)
+            // 'followers'     =>  FollowersResource::collection(
+            //     $user->followers()
+            //          ->latest()
+            //          ->paginate()
+            // )
+        ]);
+    }
+
+    public function follows(User $user)
+    {
+        // $follows = $user->followables()->latest()->paginate();
+        // $follows = $user->followings()->latest()->paginate();
+        return Inertia::render('User/Follows', [
+            'profile'       =>  UserResource::make($user),
+            'follows'       =>  $user->followings()->followable
+            // 'follows'       =>  FollowResource::collection($follows)
+            //  'follows'       =>  FollowResource::collection(
+            //             $user->followings
+            //           //->latest()
+            //           //->paginate()
+            //           //->get()
+            //  )
+        ]);
+    }
+
     public function follow(User $user)
     {
         if (auth()->user()->isFollowing($user)) {
@@ -49,7 +84,6 @@ class UserController extends Controller
             auth()->user()->toggleFollow($user);
             //$user->notify(new FollowNotifications($user, auth()->user()));
         }
-
         return back();
     }
 }

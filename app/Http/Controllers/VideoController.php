@@ -23,21 +23,26 @@ class VideoController extends Controller
             ]);
         } else {
             $file = $request->file('file');
-            $file->store('videos/' . $request->user()->id . '/' . now()->format('Y') . '/' . now()->format('m'), 'public');
-
+            // $file->store('videos/' . $request->user()->id . '/' . now()->format('Y') . '/' . now()->format('m'), 'public');
+            
             $video = Video::create([
                 'filename'      =>  $file->hashName(),
                 'user_id'       =>  $request->user()->id,
-                'disk'          => 'public',
-                'original_name' => $file->getClientOriginalName(),
-                'path'          => $file->store('videos', 'public'),
-
+                'mime_type'     =>  $file->getMimeType(),
+                'size'          =>  $file->getSize(),
+                'disk'          =>  'public',
+                'original_name' =>  $file->getClientOriginalName(),
+                'path'          =>  $file->store('media/' . $request->user()->id . '/videos/raw/', 'public'),
+                
             ]);
 
-            ConvertVideoForDownloading::dispatch($video);
+            // $this->dispatch(new ConvertVideoForDownloading($video));
+            dispatch(new ConvertVideoForDownloading($video));
+            // ConvertVideoForDownloading::dispatch($video);
 
             return response()->json([
                 'id'            =>  $video->id,
+                // 'file'          =>  $file
             ]);
         }
     }

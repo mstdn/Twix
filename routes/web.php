@@ -22,6 +22,8 @@ Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore.index');
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
 Route::get('/@{user:username}', [UserController::class, 'show'])->name('user.show');
+Route::get('/@{user:username}/follows', [UserController::class, 'follows'])->name('user.follows');
+Route::get('/@{user:username}/followers', [UserController::class, 'followers'])->name('user.followers');
 Route::get('/@{user:username}/{post:id}', [PostController::class, 'show'])->name('post.show');
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     Route::get('/', [TimelineController::class, 'home'])->name('home');

@@ -25,6 +25,8 @@ class PostResource extends JsonResource
             'delete'            =>  Auth::user() ? Auth::user()->can('delete-post', $this->resource) : null,
             'media'             =>  $this->media !== null ? $this->media : null,
             'video'             =>  $this->videos !== null ? $this->videos : null,
+            // 'video'             =>  $this->videos !== null ? VideoResource::collection($this->videos) : null,
+            // 'video'             =>  $this->videos->isNotEmpty() ? VideoResource::collection($this->videos) : null,
             // 'image'             =>  $this->image !== null ? Storage::disk('public')->url($this->image) : null,
             //'video'             =>  $this->converted_for_downloading_at !== null ? Storage::disk('public')->url('uploads/' . $this->user->id . '/' . 'videos/' . $this->id . '.mp4') : null,
             // 'hls'               =>  Storage::disk('public')->url('uploads/' . $this->user->id . '/' . 'videos/' . $this->id . '.m3u8'),

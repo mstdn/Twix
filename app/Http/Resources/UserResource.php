@@ -9,11 +9,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         return [
@@ -32,9 +27,9 @@ class UserResource extends JsonResource
             'isFollowing'    =>  Auth::user() ? Auth::user()->isFollowing($this->resource) : null,
             'isFollowedBy'   =>  Auth::user() ? Auth::user()->isFollowedBy($this->resource) : null,
             'followbutton'   =>  Auth::user() ? Auth::user()->is($this->resource) : null,
-            'is'            => [
-                'following'     =>  Auth::user() ? Auth::user()->isFollowing($this->resource) : null,
-                'self'          =>  Auth::user() ? Auth::user()->is($this->resource) : null
+            'is'             => [
+                'following'  =>  Auth::user() ? Auth::user()->isFollowing($this->resource) : null,
+                'self'       =>  Auth::user() ? Auth::user()->is($this->resource) : null
             ]
         ];
     }

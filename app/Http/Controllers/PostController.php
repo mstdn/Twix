@@ -27,8 +27,8 @@ class PostController extends Controller
     {
         return Inertia::render('Post/Show', [
             // 'user'  =>  UserResource::make($post->user()),
-            'post'  =>  PostResource::make($post),
-            'user'      =>  [
+            'post'              =>  PostResource::make($post),
+            'user'              =>  [
                 'name'          =>  $post->user->name,
                 'username'      =>  $post->user->username,
                 'avatar'        =>  $post->user->profile_photo_url
