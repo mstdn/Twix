@@ -243,6 +243,7 @@ import VuePlyr from 'vue-plyr';
 import 'vue-plyr/dist/vue-plyr.css';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 
+
 let props = defineProps({
     posts: Object,
 });
