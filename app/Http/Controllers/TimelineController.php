@@ -23,6 +23,7 @@ class TimelineController extends Controller
                 })
                 ->paginate(25)
                 ->withQueryString()
+                // ->withCount('reply_to')
         );
 
         if ($request->wantsJson()) {
@@ -30,8 +31,8 @@ class TimelineController extends Controller
         }
 
         return Inertia::render('Timelines/Home', [
-            'posts' => $posts,
-            'filters' => $request->only(['search'])
+            'posts'         => $posts,
+            'filters'       => $request->only(['search']),
         ]);
     }
 

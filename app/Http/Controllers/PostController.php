@@ -25,6 +25,8 @@ class PostController extends Controller
 
     public function show(User $user, Post $post)
     {
+        $replies = Post::where('reply_to', $post->id)->with('user')->get();
+        // $replycount = count($replies);
         return Inertia::render('Post/Show', [
             // 'user'  =>  UserResource::make($post->user()),
             'post'              =>  PostResource::make($post),
@@ -32,7 +34,10 @@ class PostController extends Controller
                 'name'          =>  $post->user->name,
                 'username'      =>  $post->user->username,
                 'avatar'        =>  $post->user->profile_photo_url
-            ]
+            ],
+            'replies'           =>  PostResource::collection($replies),
+            'demo'              =>  $post->replies
+            // 'count'             =>  $replycount,
         ]);
     }
 
@@ -45,9 +50,6 @@ class PostController extends Controller
     {
         $post = $request->validate([
             'description'      =>  'required|min:1|max:500',
-            // 'image'            => ['nullable','mimes:jpg,jpeg,png,gif','max:500048'],
-            // 'video'            => 'nullable|file|mimetypes:video/x-ms-asf,video/x-flv,video/mp4,video/mpeg,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi|max:50240',
-            // 'tags'             => 'nullable',
             'disk'             => 'public',
             'mediaIds'         =>  ['nullable','array','min:0','max:4'],
             'mediaIds.*'       =>  

@@ -13,6 +13,7 @@ use Overtrue\LaravelSubscribe\Traits\Subscribable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -75,4 +76,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function replies()
+    {
+        return $this->HasMany(Post::class, 'reply_to');
+    }
+
 }

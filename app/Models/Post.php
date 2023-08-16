@@ -28,7 +28,8 @@ class Post extends Model
         'path',
         'converted_for_downloading_at',
         'is_nsfw',
-        'converted_for_streaming_at'
+        'converted_for_streaming_at',
+        'reply_to'
     ];
 
     protected $casts = [
@@ -45,12 +46,6 @@ class Post extends Model
                 ->where('title', 'like', '%' . $search . '%')
                 ->orWhere('content', 'like', '%' . $search . '%')
         );
-    }
-
-    public function incrementReadCount() 
-    {
-        $this->reads++;
-        return $this->save();
     }
 
     public function delete()
@@ -78,5 +73,10 @@ class Post extends Model
     public function videos(): MorphMany
     {
         return $this->morphMany(Video::class, 'model');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Post::class, 'reply_to');
     }
 }

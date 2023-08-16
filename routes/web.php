@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ExploreController;
@@ -30,6 +31,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/', [PostController::class, 'store'])->name('publish.post');
     Route::post('/{user:username}/follow', [UserController::class, 'follow'])->name('follow');
     Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('like');
+    Route::get('/reply', [ReplyController::class, 'create'])->name('create.reply');
+    Route::post('/posts/{post}/reply', [ReplyController::class, 'store'])->name('reply');
+    Route::get('/posts/{post:id}/reply', [ReplyController::class, 'create'])->name('add.reply');
     Route::get('/upload', [PostController::class, 'create']);
     Route::middleware('optimizeImages')->group(function () {
         Route::post('/upload', [PostController::class, 'store']);
