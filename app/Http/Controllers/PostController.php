@@ -142,7 +142,7 @@ class PostController extends Controller
                 File::delete(public_path('storage/media/' . $post->user->id . '/' . $media->created_at->format('Y') . '/' . $media->created_at->format('m')) . '/' . $media->filename);
             }
             $post->delete();
-            return back();
+            return to_route('home');
 
         } elseif (!$post->videos->isEmpty())
         {
@@ -152,11 +152,11 @@ class PostController extends Controller
                 File::delete(public_path('storage/media/' . $post->user_id . '/videos/raw/' . $video->filename));
             }
             $post->delete();
-            return back();
+            return to_route('home');
 
         } else {
             $post->delete();
-            return back();
+            return to_route('home');
         }
 
         // File::delete(public_path('uploads/videos/') . $post->id . '.mp4');
