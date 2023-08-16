@@ -35,6 +35,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/posts/{post}/reply', [ReplyController::class, 'store'])->name('reply');
     Route::get('/posts/{post:id}/reply', [ReplyController::class, 'create'])->name('add.reply');
     Route::get('/upload', [PostController::class, 'create']);
+    Route::delete('/posts/{post:id}/delete', [PostController::class, 'destroy'])->name('post.destroy');
     Route::middleware('optimizeImages')->group(function () {
         Route::post('/upload', [PostController::class, 'store']);
         Route::post('/media', [MediaController::class, 'store'])->name('media.store');

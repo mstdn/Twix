@@ -8,20 +8,17 @@ let props = defineProps({
     posts: Object,
 });
 
-// const form = reactive({
-// })
+function submit() {
+  router.delete(route('admin.post.destroy'), form)
+}
 
-// function submit() {
-//   router.delete(route('admin.post.destroy'), form)
-// }
+const form = useForm({});
 
-// const form = useForm();
-
-// function destroy(id) {
-//     if (confirm("Are you sure you want to delete?")) {
-//         form.delete(route('admin.post.destroy', id));
-//     }
-// };
+function destroy(id) {
+    if (confirm("Are you sure you want to delete?")) {
+        form.delete(route('admin.post.destroy', id));
+    }
+};
 
 </script>
 

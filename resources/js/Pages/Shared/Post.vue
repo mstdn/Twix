@@ -75,14 +75,14 @@
 
                             <Link v-if="$page.props.auth.user !== null" :href="route('add.reply', { post: post })"
                                 class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out">
-                                <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
-                                    <g>
-                                        <path
-                                            d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z">
-                                        </path>
-                                    </g>
-                                </svg>
-                                {{ post.count }}
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
+                                <g>
+                                    <path
+                                        d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z">
+                                    </path>
+                                </g>
+                            </svg>
+                            {{ post.count }}
                             </Link>
 
                             <div v-if="$page.props.auth.user === null"
@@ -94,7 +94,7 @@
                                         </path>
                                     </g>
                                 </svg>
-                                {{ post.count  }}
+                                {{ post.count }}
                             </div>
 
                             <div
@@ -158,7 +158,66 @@
                                 </svg>
                                 0
                             </div> -->
+
                             <div
+                                class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out">
+
+
+                                <Popover v-slot="{ open }" class="relative">
+                                    <PopoverButton :class="open ? '' : 'text-gray-600 dark:text-gray-300'"
+                                        class=" text-gray-800 dark:text-white text-xs text-gray-400 hover:text-red-400 dark:hover:text-red-400 transition duration-350 ease-in-out">
+                                        <span>
+                                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
+                                                <g>
+                                                    <path
+                                                        d="M17.53 7.47l-5-5c-.293-.293-.768-.293-1.06 0l-5 5c-.294.293-.294.768 0 1.06s.767.294 1.06 0l3.72-3.72V15c0 .414.336.75.75.75s.75-.336.75-.75V4.81l3.72 3.72c.146.147.338.22.53.22s.384-.072.53-.22c.293-.293.293-.767 0-1.06z">
+                                                    </path>
+                                                    <path
+                                                        d="M19.708 21.944H4.292C3.028 21.944 2 20.916 2 19.652V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 .437.355.792.792.792h15.416c.437 0 .792-.355.792-.792V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 1.264-1.028 2.292-2.292 2.292z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </PopoverButton>
+
+                                    <transition enter-active-class="transition duration-200 ease-out"
+                                        enter-from-class="translate-y-1 opacity-0"
+                                        enter-to-class="translate-y-0 opacity-100"
+                                        leave-active-class="transition duration-150 ease-in"
+                                        leave-from-class="translate-y-0 opacity-100"
+                                        leave-to-class="translate-y-1 opacity-0">
+                                        <PopoverPanel
+                                            class="absolute left-1/2 z-10 mt-3 w-[200px] max-w-sm -translate-x-1/2 transform px-4 sm:px-0">
+
+                                            <div
+                                                class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                                                <div class="bg-gray-50 p-2">
+                                                    <Link
+                                                        :href="route('post.show', { user: post.user.username, post: post.id })"
+                                                        class="flow-root rounded-md px-2 py-2 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                                                    <span class="flex items-center">
+                                                        <span class="text-sm font-medium text-gray-900">
+                                                            See post
+                                                        </span>
+                                                    </span>
+                                                    </Link>
+                                                    <Link v-if="post.delete === true"
+                                                        @click="destroy(post.id)" method="post" type="submit" as="button"
+                                                        class="flow-root rounded-md px-2 py-2 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                                                    <span class="flex items-center">
+                                                        <span class="text-sm font-medium text-gray-900">
+                                                            Delete post
+                                                        </span>
+                                                    </span>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </PopoverPanel>
+                                    </transition>
+                                </Popover>
+                            </div>
+
+                            <!-- <div
                                 class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out">
                                 <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
                                     <g>
@@ -170,7 +229,7 @@
                                         </path>
                                     </g>
                                 </svg>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -179,11 +238,24 @@
     </div>
 </template>
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, router, useForm } from "@inertiajs/vue3";
 import VuePlyr from 'vue-plyr';
 import 'vue-plyr/dist/vue-plyr.css';
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 
 let props = defineProps({
     posts: Object,
 });
+
+function submit() {
+  router.delete(route('post.destroy'), form)
+}
+
+const form = useForm({});
+
+function destroy(id) {
+    if (confirm("Are you sure you want to delete?")) {
+        form.delete(route('post.destroy', id));
+    }
+};
 </script>

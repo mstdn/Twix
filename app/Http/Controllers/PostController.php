@@ -135,12 +135,34 @@ class PostController extends Controller
             abort(403);
         }
 
-        File::delete(public_path('uploads/videos/') . $post->id . '.mp4');
+        if (!$post->media->isEmpty())
+        {
+            foreach($post->media as $media)
+            {
+                File::delete(public_path('storage/media/' . $post->user->id . '/' . $media->created_at->format('Y') . '/' . $media->created_at->format('m')) . '/' . $media->filename);
+            }
+            $post->delete();
+            return back();
 
-        // Delete the file
-        File::delete($post->path);
+        } elseif (!$post->videos->isEmpty())
+        {
+            foreach($post->videos as $video)
+            {
+                File::delete(public_path('storage/media/' . $post->user_id . '/videos/converted/' . $video->id . '.mp4'));
+                File::delete(public_path('storage/media/' . $post->user_id . '/videos/raw/' . $video->filename));
+            }
+            $post->delete();
+            return back();
 
-        $post->delete();
-        return redirect('/home')->with('message', 'Post deleted successfully.');
+        } else {
+            $post->delete();
+            return back();
+        }
+
+        // File::delete(public_path('uploads/videos/') . $post->id . '.mp4');
+        // File::delete($post->path);
+        // $post->delete();
+        // return back();
+        // return redirect('/home')->with('message', 'Post deleted successfully.');
     }
 }
