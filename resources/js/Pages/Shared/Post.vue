@@ -54,11 +54,11 @@
                 <div v-if="post.video !== null && post.video.length" class="flex mb-4 mr-2">
                     <div v-for="(item, index) in post.video" :key="index">
                         <div class="w-full">
-                            <vue-plyr :options="options">
+                            <div class="h-full">
                                 <video controls crossorigin playsinline>
                                     <source size="1080" :src="item.full_url" type="video/mp4" />
                                 </video>
-                            </vue-plyr>
+                            </div>
                             <!-- <video controls loop crossorigin="anonymous" :src="item.full_url" class="w-full" /> -->
                         </div>
                     </div>
@@ -239,10 +239,7 @@
 </template>
 <script setup>
 import { Link, router, useForm } from "@inertiajs/vue3";
-import VuePlyr from 'vue-plyr';
-import 'vue-plyr/dist/vue-plyr.css';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-
 
 let props = defineProps({
     posts: Object,

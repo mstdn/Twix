@@ -4,8 +4,6 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import createServer from "@inertiajs/vue3/server";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
-import VuePlyr from "vue-plyr/dist/vue-plyr.ssr.js";
-import "vue-plyr/dist/vue-plyr.css";
 
 const appName = import.meta.env.VITE_APP_NAME || "Twix";
 
@@ -22,9 +20,6 @@ createServer((page) =>
         setup({ App, props, plugin }) {
             return createSSRApp({ render: () => h(App, props) })
                 .use(plugin)
-                .use(VuePlyr, {
-                    plyr: {},
-                })
                 .use(ZiggyVue, {
                     ...page.props.ziggy,
                     location: new URL(page.props.ziggy.location),

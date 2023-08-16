@@ -74,11 +74,11 @@ function destroy(id) {
 
                 <div v-if="post.data.video.length" class="flex mb-4 mr-2">
                     <div v-for="(item, index) in post.data.video" :key="index">
-                        <vue-plyr :options="options">
+                        <div class="h-full">
                             <video controls crossorigin playsinline loop>
                                 <source size="720" :src="item.full_url" type="video/mp4" />
                             </video>
-                        </vue-plyr>
+                        </div>
                     </div>
                 </div>
 

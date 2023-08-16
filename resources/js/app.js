@@ -5,8 +5,6 @@ import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
-import VuePlyr from "vue-plyr";
-import "vue-plyr/dist/vue-plyr.css";
 import ResizeTextarea from 'resize-textarea-vue3';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
@@ -28,9 +26,6 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue, Ziggy)
             .use(Toast, options)
-            .use(VuePlyr, {
-                plyr: {},
-            })
             .use(ResizeTextarea)
             .mount(el);
     },
