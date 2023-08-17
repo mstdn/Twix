@@ -119,6 +119,7 @@
 import axios from "axios";
 import FileInput from "./FileInput.vue";
 import VideoInput from "./VideoInput.vue";
+import { router } from '@inertiajs/vue3';
 
 export default {
     data() {
@@ -161,6 +162,7 @@ export default {
             this.form.videoIds = this.video.map(item => item.id);
             this.$inertia.post(`/upload`, this.form, {
                 preserveState: true,
+                // preserveScroll: true,
                 onStart: () => this.loading = true,
                 onFinish: () => this.loading = false,
                 onSuccess: () => {
@@ -168,6 +170,8 @@ export default {
                         this.form = { description: '', mediaIds: [], videoIds: [] };
                         this.media = [];
                         this.video = [];
+                        
+                        // router.reload();
                         //this.isOpen.value = false;
                     }
                 }

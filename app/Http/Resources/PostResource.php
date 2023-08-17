@@ -10,6 +10,7 @@ use Stevebauman\Purify\Facades\Purify;
 
 class PostResource extends JsonResource
 {
+    public static $wrap = null;
     public function toArray($request)
     {
         return [
@@ -23,9 +24,13 @@ class PostResource extends JsonResource
             'likes'             =>  $this->likers()->count(),
             'user'              =>  UserResource::make($this->user),
             'delete'            =>  Auth::user() ? Auth::user()->can('delete-post', $this->resource) : null,
-            'media'             =>  $this->media !== null ? $this->media : null,
-            'video'             =>  $this->videos !== null ? $this->videos : null,
-            'count'             =>  $this->replies->count()
+            'count'             =>  $this->replies->count(),
+            'user'              =>  UserResource::make($this->user),
+            'media'             =>  $this->media->isNotEmpty() ? $this->media : null,
+            'video'             =>  $this->videos->isNotEmpty() ? $this->videos : null,
+            
+            // 'media'             =>  $this->media !== null ? $this->media : null,
+            // 'video'             =>  $this->videos !== null ? $this->videos : null,
             // 'video'             =>  $this->videos !== null ? VideoResource::collection($this->videos) : null,
             // 'video'             =>  $this->videos->isNotEmpty() ? VideoResource::collection($this->videos) : null,
             //'video'             =>  $this->converted_for_downloading_at !== null ? Storage::disk('public')->url('uploads/' . $this->user->id . '/' . 'videos/' . $this->id . '.mp4') : null,

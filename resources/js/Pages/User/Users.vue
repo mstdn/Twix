@@ -1,15 +1,21 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Pagination from "../Shared/Pagination.vue";
-import { ref, watch } from "vue";
 import { router } from '@inertiajs/vue3'
 import throttle from "lodash/throttle";
 import { Link } from '@inertiajs/vue3';
+import { useInfiniteScroll } from "@/Composables/useInfiniteScroll";
+import { useIntersect } from "@/Composables/useIntersect";
+import { ref, watch } from 'vue';
 
 let props = defineProps({
     users: Object,
     filters: Object,
 });
+
+const landmark = ref(null);
+
+const { items, reset, canLoadMoreItems } = useInfiniteScroll('users', landmark);
 
 let search = ref(props.filters.search);
 
@@ -22,7 +28,11 @@ watch(
             {
                 preserveState: true,
                 replace: true,
-            }
+                onSuccess: () => {
+                    reset();
+                },
+            },
+
         );
     }, 500)
 )
@@ -64,7 +74,7 @@ watch(
                 </h1>
 
                 <!-- Twitter Account -->
-                <div v-for="profile in users.data" :key="profile.id"
+                <div v-for="profile in items" :key="profile.id"
                     class="text-blue-400 text-sm font-normal p-3 border-b border-gray-200 dark:border-dim-200 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out">
                     <Link :href="route('user.show', { id: profile.username })">
                     <div class="flex flex-row justify-between p-2">
@@ -115,10 +125,18 @@ watch(
                 <!-- /Twitter Account -->
 
 
-                <div
+                <!-- <div
                     class="text-blue-400 text-sm font-normal p-3 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out">
                     <Pagination :links="users" />
-                </div>
+                </div> -->
+                <span v-if="!canLoadMoreItems">
+                    <div
+                        class="text-blue-400 text-sm font-normal p-3 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out">
+                        No more
+                    </div>
+                </span>
+
+                <div ref="landmark"></div>
             </div>
             <!-- /Who to follow -->
         </div>

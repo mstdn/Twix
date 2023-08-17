@@ -26,10 +26,12 @@ class PostController extends Controller
     public function show(User $user, Post $post)
     {
         $replies = Post::where('reply_to', $post->id)->with('user')->get();
+        $status = Post::where('id', $post->id)->with('user')->get();
         // $replycount = count($replies);
         return Inertia::render('Post/Show', [
             // 'user'  =>  UserResource::make($post->user()),
             'post'              =>  PostResource::make($post),
+            // 'post'              =>  PostResource::make($status),
             'user'              =>  [
                 'name'          =>  $post->user->name,
                 'username'      =>  $post->user->username,
@@ -115,8 +117,8 @@ class PostController extends Controller
 
         // $post['user_id'] = auth()->user()->id;
 
-
-        return back();
+        return to_route('home');
+        // return back();
     }
 
     public function like(Post $post)

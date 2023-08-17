@@ -12,7 +12,8 @@ class TimelineController extends Controller
     // Home logged-in
     public function home(Request $request)
     {
-        $posts = PostResource::collection(
+        $posts = fn () =>
+        PostResource::collection(
             Post::query()
                 ->with('user')
                 ->latest()
@@ -21,8 +22,8 @@ class TimelineController extends Controller
                 ->when($request->input('search'), function ($query, $search) {
                     $query->where('description', 'like', "%{$search}%");
                 })
-                ->paginate(25)
-                ->withQueryString()
+                ->paginate(10)
+                // ->withQueryString()
                 // ->withCount('reply_to')
         );
 
@@ -49,7 +50,7 @@ class TimelineController extends Controller
                     $query->where('description', 'like', "%{$search}%");
                 })
                 ->paginate(25)
-                ->withQueryString()
+                // ->withQueryString()
         );
 
         if ($request->wantsJson()) {

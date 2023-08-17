@@ -17,8 +17,8 @@ class ExploreController extends Controller
                 ->latest()
                 ->where('status', 'Public')
                 ->where('is_nsfw', 0)
-                ->paginate(25)
-                ->withQueryString()
+                ->paginate(12)
+                // ->withQueryString()
         );
 
         if ($request->wantsJson()) {

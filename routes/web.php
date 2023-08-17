@@ -9,6 +9,7 @@ use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TimelineController;
 
 
@@ -50,3 +51,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::delete('/admin/@{user:id}/delete', [AdminController::class, 'deleteUser'])->name('admin.user.destroy');
     });
 });
+
+Route::get('/about', [PagesController::class, 'about'])->name('page.about');
+Route::get('/terms', [PagesController::class, 'terms'])->name('page.terms');
+Route::get('/privacy', [PagesController::class, 'privacy'])->name('page.privacy');

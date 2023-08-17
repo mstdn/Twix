@@ -27,7 +27,7 @@
                     <div
                         class="text-blue-400 text-sm font-normal p-3 border-b border-gray-200 dark:border-dim-200 hover:bg-gray-100 dark:hover:bg-dim-300 cursor-pointer transition duration-350 ease-in-out">
                         <h2 class="font-bold text-md text-gray-800 dark:text-white">
-                            Post deletes
+                            Follows/Followers list
                         </h2>
                         <p class="text-xs text-gray-400">soon</p>
                     </div>
@@ -134,18 +134,18 @@
                 <footer>
                     <ul class="text-xs text-gray-500 my-4 mx-2">
                         <li class="inline-block mx-2">
-                            <a class="hover:underline" href="#">Terms</a>
+                            <Link :href="route('page.about')" class="hover:underline">About</Link>
                         </li>
                         <li class="inline-block mx-2">
-                            <a class="hover:underline" href="#">Privacy</a>
+                            <Link :href="route('page.privacy')" class="hover:underline">Privacy</Link>
                         </li>
                         <li class="inline-block mx-2">
-                            <a class="hover:underline" href="#">Cookies</a>
+                            <Link :href="route('page.terms')" class="hover:underline">Terms</Link>
                         </li>
                         <li class="inline-block mx-2">
                             <a class="hover:underline" target="_blank" href="https://github.com/mstdn/Twix">Source</a>
                         </li>
-                        <li class="inline-block mx-2">© 2023 Twix, Inc.</li>
+                        <li class="inline-block mx-2">© 2023 <a href="https://twix.social" target="_blank">Twix Social</a></li>
                     </ul>
                 </footer>
             </div>
@@ -154,8 +154,9 @@
 </template>
 <script>
 import Search from './Search.vue';
+import { Link } from '@inertiajs/vue3';
 
 export default {
-    components: { Search }
+    components: { Search, Link }
 }
 </script>

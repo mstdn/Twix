@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-between">
+            <!-- <div class="flex justify-between">
                 <div class="flex pl-2">
                     Posts
                 </div>
@@ -78,7 +78,7 @@
                 <div class="flex pr-2">
                     Media
                 </div>
-            </div>
+            </div> -->
         </div>
 
 
