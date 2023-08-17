@@ -14,8 +14,11 @@ class TimelineController extends Controller
     {
         $posts = fn () =>
         PostResource::collection(
-            Post::query()
-                ->with('user')
+            Post::where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhereIn('user_id', auth()->user()->followings->pluck('followable_id'));
+            })
+                ->with('user', 'likers', 'replies')
                 ->latest()
                 ->where('status', 'Public')
                 ->where('is_nsfw', 0)
@@ -23,8 +26,8 @@ class TimelineController extends Controller
                     $query->where('description', 'like', "%{$search}%");
                 })
                 ->paginate(10)
-                // ->withQueryString()
-                // ->withCount('reply_to')
+            // ->withQueryString()
+            // ->withCount('reply_to')
         );
 
         if ($request->wantsJson()) {
@@ -50,7 +53,7 @@ class TimelineController extends Controller
                     $query->where('description', 'like', "%{$search}%");
                 })
                 ->paginate(25)
-                // ->withQueryString()
+            // ->withQueryString()
         );
 
         if ($request->wantsJson()) {

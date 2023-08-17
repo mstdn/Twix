@@ -27,10 +27,7 @@ let props = defineProps({
         <div v-if="$page.props.auth.user">
             <Upload />
         </div>
-
-        <div v-if="posts.meta.total === 0">
-            <Empty />
-        </div>
+        
         <PostCard v-if="posts.meta.total !== 0" v-for="post in items" :key="post.id" :post="post" />
 
         <div v-if="!canLoadMoreItems"

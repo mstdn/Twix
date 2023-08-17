@@ -32,7 +32,7 @@ class Post extends Model
         'reply_to'
     ];
 
-    protected $with = ['user'];
+    protected $with = ['user', 'replies', 'media', 'videos'];
 
     protected $casts = [
         // 'description' => CleanHtmlInput::class, // cleans both when getting and setting the value

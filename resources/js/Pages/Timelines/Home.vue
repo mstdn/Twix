@@ -28,9 +28,6 @@ const { items, reset, canLoadMoreItems } = useInfiniteScroll('posts', landmark);
             <Upload />
         </div>
 
-        <div v-if="posts.meta.total === 0">
-            <Empty />
-        </div>
         <PostCard v-if="posts.meta.total !== 0" v-for="item in items" :key="item.id" :post="item" />
 
         <div v-if="!canLoadMoreItems"
